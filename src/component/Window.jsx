@@ -19,9 +19,10 @@ const DraggableWindow = ({ dragConstraints, windowPosition, children }) => {
   );
 };
 
-const Window = () => {
+const Window = (props) => {
   const [dragConstraints, setDragConstraints] = useState({ left: 0, right: 0, top: 0, bottom: 0 });
   const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
+  const { menuVisible, toggleMenu } = props;
 
   const handleDragStart = (event) => {
     event.preventDefault();
@@ -51,8 +52,17 @@ const Window = () => {
     return () => window.removeEventListener('resize', updateWindowDimensions);
   }, []);
 
+  const clickwindow = ()=>
+  {
+    if (menuVisible) {
+      toggleMenu(); // Close the menu only if it's open
+    }
+  }
+
   return (
-    <div className="relative h-screen bg-gray-200" style={{backgroundImage: `url(${assets.bg0})`, backgroundRepeat: 'no-repeat', backgroundSize: '100% 100%'}}>
+    <div className="relative h-screen bg-gray-200" 
+            style={{backgroundImage: `url(${assets.bg0})`, backgroundRepeat: 'no-repeat',
+             backgroundSize: '100% 100%'}} onClick={clickwindow}>
       {/* DraggableWindow for My Computer */}
       <DraggableWindow dragConstraints={dragConstraints} windowPosition={windowPosition}>
         <img src={assets.mycomputer} alt="mycomputer" onDragStart={handleDragStart} className='w-16 h-16 relative' />
