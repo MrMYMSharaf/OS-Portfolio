@@ -88,9 +88,13 @@ const handleRightClick = (event) => {
   };
 
   return (
-    <div className="relative h-screen bg-gray-200"
+    <div className="relative h-screen bg-gray-200 overflow-hidden overflow-x-hidden overflow-y-clip"
          style={{backgroundImage: `url(${assets.bg0})`, backgroundRepeat: 'no-repeat',
-         backgroundSize: '100% 100%'}} onClick={clickwindow} onContextMenu={handleRightClick}>
+         backgroundSize: '100% 100%',
+         overflow: 'hidden', // Prevent content overflow
+         overflowY: 'hidden', // Hide vertical scroll bar
+         overflowX: 'hidden'
+         }} onClick={clickwindow} onContextMenu={handleRightClick}>
       {/* DraggableWindow for My Computer */}
       <DraggableWindow dragConstraints={dragConstraints} windowPosition={windowPosition}>
         <img src={assets.mycomputer} alt="mycomputer" onDragStart={handleDragStart} className='w-16 h-16 relative' />
