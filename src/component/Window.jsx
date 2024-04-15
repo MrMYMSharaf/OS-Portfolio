@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { motion } from 'framer-motion'; // Import motion from framer-motion
 import assets from '../assets';
+import ContextMenu from '../application/ContextMenu'; // Import the ContextMenu component
 
 // DraggableWindow component
 const DraggableWindow = ({ dragConstraints, windowPosition, children }) => {
@@ -22,11 +23,36 @@ const DraggableWindow = ({ dragConstraints, windowPosition, children }) => {
 const Window = (props) => {
   const [dragConstraints, setDragConstraints] = useState({ left: 0, right: 0, top: 0, bottom: 0 });
   const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
+  const [showContextMenu, setShowContextMenu] = useState(false); // State to control the visibility of the context menu
+  const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 }); // Position of the context menu
   const { menuVisible, toggleMenu } = props;
 
   const handleDragStart = (event) => {
     event.preventDefault();
   };
+
+  // Handle right-click event
+const handleRightClick = (event) => {
+  event.preventDefault();
+  console.log("Mouse coordinates:", event.clientX, event.clientY);
+  setContextMenuPosition({ x: event.clientX, y: event.clientY }); // Set the position of the context menu
+  setShowContextMenu(true); // Show the context menu
+};
+
+
+
+  // Close context menu when clicking outside
+  const handleClickOutsideContextMenu = () => {
+    setShowContextMenu(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener('click', handleClickOutsideContextMenu);
+
+    return () => {
+      window.removeEventListener('click', handleClickOutsideContextMenu);
+    };
+  }, []);
 
   useLayoutEffect(() => {
     function updateWindowDimensions() {
@@ -49,20 +75,22 @@ const Window = (props) => {
     window.addEventListener('resize', updateWindowDimensions);
     window.addEventListener('resize', setWindowPosition);
 
-    return () => window.removeEventListener('resize', updateWindowDimensions);
+    return () => {
+      window.removeEventListener('resize', updateWindowDimensions);
+      window.removeEventListener('resize', setWindowPosition);
+    };
   }, []);
 
-  const clickwindow = ()=>
-  {
+  const clickwindow = () => {
     if (menuVisible) {
       toggleMenu(); // Close the menu only if it's open
     }
-  }
+  };
 
   return (
-    <div className="relative h-screen bg-gray-200" 
-            style={{backgroundImage: `url(${assets.bg0})`, backgroundRepeat: 'no-repeat',
-             backgroundSize: '100% 100%'}} onClick={clickwindow}>
+    <div className="relative h-screen bg-gray-200"
+         style={{backgroundImage: `url(${assets.bg0})`, backgroundRepeat: 'no-repeat',
+         backgroundSize: '100% 100%'}} onClick={clickwindow} onContextMenu={handleRightClick}>
       {/* DraggableWindow for My Computer */}
       <DraggableWindow dragConstraints={dragConstraints} windowPosition={windowPosition}>
         <img src={assets.mycomputer} alt="mycomputer" onDragStart={handleDragStart} className='w-16 h-16 relative' />
@@ -86,6 +114,9 @@ const Window = (props) => {
         <img src={assets.Certificate} alt="mycomputer" onDragStart={handleDragStart} className='w-16 h-16 relative' />
         <span className='text-white text-xs ml-1 absolute'>Certificate</span>
       </DraggableWindow>
+
+      {/* Render ContextMenu */}
+      {showContextMenu && <ContextMenu top={contextMenuPosition.y} left={contextMenuPosition.x} />}
     </div>
   );
 };

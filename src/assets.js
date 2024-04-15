@@ -8,6 +8,8 @@ import MainMenu from './component/MainMenu';
 // Importing the Application jsx
 import Calculator from './application/Calculator';
 import Email from './application/Email';
+import Notepad from './application/Notepad';
+import ContextMenu from './application/ContextMenu';
 
 import Layer from './application/Layer';
 
@@ -29,13 +31,14 @@ import Briefcase from './assets/icon/Briefcase.png';
 
 import iconeEmail from './assets/icon/Outlook Express.png';
 import Exit from './assets/icon/Exit.png';
+import IconNotepad from './assets/icon/Notepad.png'
 
 // Exporting all assets
 export default {
   Window,
-  TaskBar,Layer,
-  MainMenu,Calculator,Email,Exit,
-  iconeEmail, // Export Calculator component
+  TaskBar,Layer,ContextMenu,
+  MainMenu,Calculator,Email,Exit,Notepad,
+  iconeEmail,IconNotepad, // Export Calculator component
   bg0,
   bg2,
   bg3,

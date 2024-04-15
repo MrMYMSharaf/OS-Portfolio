@@ -12,12 +12,12 @@ function App() {
   };
   return (
     <>
-      <assets.Email/>
-      {/* <assets.Window menuVisible={menuVisible} toggleMenu={toggleMenu} />
+       {/* <assets.ContextMenu/> */}
+      <assets.Window menuVisible={menuVisible} toggleMenu={toggleMenu} />
       <assets.TaskBar toggleMenu={toggleMenu} />
       {
         menuVisible && <assets.MainMenu />
-      } */}
+      }
       
     </>
   );

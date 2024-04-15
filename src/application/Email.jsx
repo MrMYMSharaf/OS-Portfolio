@@ -41,7 +41,7 @@ const Email = () => {
                     <form onSubmit={handleSubmit} className='email'>
 
                         <div className='flex flex-col'>
-                        <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Name : </label>
+                        <span className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Name : </span>
                             <input type="text"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
@@ -50,8 +50,8 @@ const Email = () => {
                                 placeholder="John"
                             />
                         </div>
-                        <div div className='flex flex-col'>
-                        <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email : </label>
+                        <div className='flex flex-col'>
+                        <span className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email : </span>
         
                             <input type="email"
                                 value={email}
@@ -61,8 +61,8 @@ const Email = () => {
                                 placeholder="John@mail.com"
                             />
                         </div>
-                        <div div className='flex flex-col'>
-                          <label for="message" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your message</label>
+                        <div className='flex flex-col'>
+                          <span className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your message</span>
                         <textarea cols="30" rows="10" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}

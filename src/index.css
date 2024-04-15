@@ -18,5 +18,25 @@
      dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
       dark:focus:border-blue-500 ;
   }
+
+  .textarea-container {
+    height: 200px; /* Adjust height as needed */
+    overflow-y: auto;
+}
+
+/* Add any custom scrollbar styles */
+.scrollbar::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar thumb */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.scrollbar::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color of the scrollbar track */
+}
+
   
 
