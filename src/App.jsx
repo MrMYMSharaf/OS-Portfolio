@@ -12,7 +12,7 @@ function App() {
   };
   return (
     <>
-      <assets.Calculator/>
+      <assets.Email/>
       {/* <assets.Window menuVisible={menuVisible} toggleMenu={toggleMenu} />
       <assets.TaskBar toggleMenu={toggleMenu} />
       {

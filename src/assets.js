@@ -7,6 +7,9 @@ import MainMenu from './component/MainMenu';
 
 // Importing the Application jsx
 import Calculator from './application/Calculator';
+import Email from './application/Email';
+
+import Layer from './application/Layer';
 
 
 // Importing background images
@@ -22,13 +25,17 @@ import power from './assets/icon/Power.png';
 import logout from './assets/icon/Logout.png';
 import Certificate from './assets/icon/Certificate.png';
 import RTF from './assets/icon/RTF.png';
-import Briefcase from './assets/icon/Briefcase.png'
+import Briefcase from './assets/icon/Briefcase.png';
+
+import iconeEmail from './assets/icon/Outlook Express.png';
+import Exit from './assets/icon/Exit.png';
 
 // Exporting all assets
 export default {
   Window,
-  TaskBar,
-  MainMenu,Calculator, // Export Calculator component
+  TaskBar,Layer,
+  MainMenu,Calculator,Email,Exit,
+  iconeEmail, // Export Calculator component
   bg0,
   bg2,
   bg3,
