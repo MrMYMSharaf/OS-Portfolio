@@ -6,9 +6,9 @@ const ContextMenu = ({ top, left }) => {
     };
 
     return (
-        <div className={`w-40 bg-applicationBg flex flex-col absolute`} style={{ top: top, left: left }}>
+        <div className={`w-44 bg-slate-100 flex flex-col shadow-md absolute`} style={{ top: top, left: left }}>
             <div className='relative group'>
-                <span className='hover:bg-white p-4 cursor-pointer block w-full'>Sort by</span>
+                <span className='hover:bg-blue-500 hover:shadow-md p-4 cursor-pointer block w-full'>Sort by</span>
                 <div className='absolute left-full top-0 hidden group-hover:block bg-white shadow-md w-40'>
                     {/* Submenu options */}
                     <div className='flex flex-col'>
@@ -20,9 +20,9 @@ const ContextMenu = ({ top, left }) => {
                 </div>
             </div>
 
-            <span className='hover:bg-white p-4 cursor-pointer block w-full' onClick={handleRefreshClick}>Refresh</span>
+            <span className='hover:bg-blue-500 hover:shadow-md p-4 cursor-pointer block w-full' onClick={handleRefreshClick}>Refresh</span>
             <div className='relative group'>
-                <span className='hover:bg-white p-4 cursor-pointer block w-full'>Background</span>
+                <span className='hover:bg-blue-500 hover:shadow-md p-4 cursor-pointer block w-full'>Background</span>
                 <div className='absolute left-full top-0 hidden group-hover:block bg-white shadow-md w-40'>
                     {/* Submenu options */}
                     <div className='flex flex-col'>
@@ -32,8 +32,8 @@ const ContextMenu = ({ top, left }) => {
                     </div>
                 </div>
             </div>
-            <span className='hover:bg-white p-4 cursor-pointer block w-full'>Capture Screen</span>
-            <span className='hover:bg-white p-4 cursor-pointer block w-full'>Properties</span>
+            <span className='hover:bg-blue-500 hover:shadow-md p-4 cursor-pointer block w-full'>Capture Screen</span>
+            <span className='hover:bg-blue-500 hover:shadow-md p-4 cursor-pointer block w-full'>Properties</span>
             {/* Empty div for adjusting hover background size */}
             <div className='hover:bg-white p-4 h-0 cursor-pointer' />
         </div>

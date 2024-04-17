@@ -14,22 +14,22 @@ import Videos from '../assets/icon/My Videos.png';
 
 
 const MainMenuData = [
-  { name: "Internet", SubName: "Internet Explorer", image: InternetExplorerImage },
-  { name: "Email", SubName: "", image: OutlookImage },
-  { name: "Paint", SubName: "", image: Paint },
-  { name: "Window Media Player", SubName: "", image:WMP9 },
-  { name: "Calculator", SubName: "", image:Calculator },
-  { name: "Notepad", SubName: "", image:Notepad },
+  { name: "Internet", SubName: "Internet Explorer", image: InternetExplorerImage , on_clicked: () => handleItemClick("Internet") },
+  { name: "Email", SubName: "", image: OutlookImage , on_clicked: () => handleItemClick("Email") },
+  { name: "Paint", SubName: "", image: Paint , on_clicked: () => handleItemClick("Paint") },
+  { name: "Window Media Player", SubName: "", image:WMP9 , on_clicked: () => handleItemClick("WindowMP") },
+  { name: "Calculator", SubName: "", image:Calculator , on_clicked: () => handleItemClick("Calculator") },
+  { name: "Notepad", SubName: "", image:Notepad , on_clicked: () => handleItemClick("Notepad") },
 ];
 
 
 const MainMenuData1 = [
-  { name: "My Documents", image: Documents },
-  { name: "My Pictures", image: Pictures },
-  { name: "My Music", image: Music },
-  { name: "My Videos", image: Videos },
-  { name: "My Computer", image: Computer},
-  { name: "Games", image: Game },
+  { name: "My Documents", image: Documents , on_clicked:"Documents" },
+  { name: "My Pictures", image: Pictures , on_clicked:"Pictures" },
+  { name: "My Music", image: Music , on_clicked:"Music" },
+  { name: "My Videos", image: Videos  , on_clicked:"Videos"},
+  { name: "My Computer", image: Computer , on_clicked:"Computer"},
+  { name: "Games", image: Game , on_clicked:"Games" },
   
 ];
 

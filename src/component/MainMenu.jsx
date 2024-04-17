@@ -1,6 +1,7 @@
-
 import assets from "../assets"
 import {MainMenuData,MainMenuData1} from "../data/MainMenuData"
+
+
 const MainMenu = () => {
   return (
     <div className="absolute  bottom-8">
@@ -50,4 +51,3 @@ const MainMenu = () => {
 }
 
 export default MainMenu
-

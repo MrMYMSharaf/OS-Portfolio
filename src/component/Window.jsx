@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { motion } from 'framer-motion'; // Import motion from framer-motion
 import assets from '../assets';
-import ContextMenu from '../application/ContextMenu'; // Import the ContextMenu component
+import ContextMenu from '../application/ContextMenu';
+import Calculator  from '../application/Calculator';
+import Certificate from '../application/windowAplication/Certificate';
 
 // DraggableWindow component
 const DraggableWindow = ({ dragConstraints, windowPosition, children }) => {
   return (
     <motion.div
-      className="w-20 h-24 bg-orange-500 bg-opacity-25 cursor-grab"
+      className="w-20 h-24 cursor-grab"
       drag
       dragMomentum={false}
       dragConstraints={dragConstraints}
@@ -25,7 +27,14 @@ const Window = (props) => {
   const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
   const [showContextMenu, setShowContextMenu] = useState(false); // State to control the visibility of the context menu
   const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 }); // Position of the context menu
-  const { menuVisible, toggleMenu } = props;
+  const { menuVisible, toggleMenu} = props;
+
+  const [clickCount, setClickCount] = useState(0);
+  const [showCertificate, setShowCertificate] = useState(false);
+  const [certificateIconBackgroundColor, setCertificateIconBackgroundColor] = useState("");
+
+  
+  
 
   const handleDragStart = (event) => {
     event.preventDefault();
@@ -34,7 +43,7 @@ const Window = (props) => {
   // Handle right-click event
 const handleRightClick = (event) => {
   event.preventDefault();
-  console.log("Mouse coordinates:", event.clientX, event.clientY);
+  //console.log("Mouse coordinates:", event.clientX, event.clientY);
   setContextMenuPosition({ x: event.clientX, y: event.clientY }); // Set the position of the context menu
   setShowContextMenu(true); // Show the context menu
 };
@@ -87,40 +96,73 @@ const handleRightClick = (event) => {
     }
   };
 
+  const handleClickCertificate = () => {
+    setClickCount(prevCount => {
+      const newCount = prevCount + 1;
+      
+      if (newCount === 1) {
+        setCertificateIconBackgroundColor("bg-orange-500 bg-opacity-25 w-full h-full");
+      } else if (newCount === 2) {
+        setCertificateIconBackgroundColor("");
+        setShowCertificate(true);
+      }
+
+      return newCount === 2 ? 0 : newCount;
+    });
+  };
+  
+
+  
+
+  
   return (
-    <div className="relative h-screen bg-gray-200 overflow-hidden overflow-x-hidden overflow-y-clip"
+    <div className="relative h-screen bg-gray-200 " 
+    // overflow-hidden overflow-x-hidden overflow-y-clip
          style={{backgroundImage: `url(${assets.bg0})`, backgroundRepeat: 'no-repeat',
          backgroundSize: '100% 100%',
-         overflow: 'hidden', // Prevent content overflow
-         overflowY: 'hidden', // Hide vertical scroll bar
-         overflowX: 'hidden'
+        //  overflow: 'hidden', // Prevent content overflow
+        //  overflowY: 'hidden', // Hide vertical scroll bar
+        //  overflowX: 'hidden'
          }} onClick={clickwindow} onContextMenu={handleRightClick}>
       {/* DraggableWindow for My Computer */}
       <DraggableWindow dragConstraints={dragConstraints} windowPosition={windowPosition}>
-        <img src={assets.mycomputer} alt="mycomputer" onDragStart={handleDragStart} className='w-16 h-16 relative' />
+        <img src={assets.mycomputer} alt="mycomputer" onDragStart={handleDragStart} className='w-12 h-12 relative' />
         <span className='text-white text-xs ml-1 absolute'>My Computer</span>
       </DraggableWindow>
 
       {/* DraggableWindow for My CV */}
-      <DraggableWindow dragConstraints={dragConstraints} windowPosition={windowPosition} style={{marginTop: '3rem'}}>
-        <img src={assets.RTF} alt="mycomputer" onDragStart={handleDragStart} className='w-16 h-16 relative' />
+      <DraggableWindow dragConstraints={dragConstraints} windowPosition={windowPosition}>
+        <img src={assets.RTF} alt="mycomputer" onDragStart={handleDragStart} className='w-12 h-12 relative' />
         <span className='text-white text-xs ml-1 absolute'>My CV</span>
       </DraggableWindow>
 
       {/* DraggableWindow for My Blog */}
-      <DraggableWindow dragConstraints={dragConstraints} windowPosition={windowPosition} style={{marginTop: '3rem'}}>
-        <img src={assets.Briefcase} alt="mycomputer" onDragStart={handleDragStart} className='w-16 h-16 relative' />
+      <DraggableWindow dragConstraints={dragConstraints} windowPosition={windowPosition}>
+        <img src={assets.Briefcase} alt="mycomputer" onDragStart={handleDragStart} className='w-12 h-12 relative' />
         <span className='text-white text-xs ml-1 absolute'>My Blog</span>
       </DraggableWindow>
 
-      {/* DraggableWindow for Certificate */}
-      <DraggableWindow dragConstraints={dragConstraints} windowPosition={windowPosition} style={{marginTop: '3rem'}}>
-        <img src={assets.Certificate} alt="mycomputer" onDragStart={handleDragStart} className='w-16 h-16 relative' />
-        <span className='text-white text-xs ml-1 absolute'>Certificate</span>
+      <DraggableWindow dragConstraints={dragConstraints} windowPosition={windowPosition} >
+        <div onClick={handleClickCertificate} className={certificateIconBackgroundColor}>
+          <img src={assets.Certificate} alt="mycomputer" onDragStart={handleDragStart} className='w-12 h-12 relative' />
+          <span className='text-white text-xs ml-1 absolute'>Certificate</span>
+        </div>
       </DraggableWindow>
 
+
+
       {/* Render ContextMenu */}
+      <DraggableWindow dragConstraints={dragConstraints} windowPosition={windowPosition} >
+      
+      {showCertificate && <Certificate />}
+      </DraggableWindow>
       {showContextMenu && <ContextMenu top={contextMenuPosition.y} left={contextMenuPosition.x} />}
+
+  
+      
+      
+      
+
     </div>
   );
 };
