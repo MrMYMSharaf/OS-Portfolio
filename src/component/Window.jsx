@@ -116,8 +116,7 @@ const handleRightClick = (event) => {
 
   
   return (
-    <div className="relative h-screen bg-gray-200 " 
-    // overflow-hidden overflow-x-hidden overflow-y-clip
+    <div className="relative h-screen bg-gray-200 overflow-hidden overflow-x-hidden overflow-y-clip" 
          style={{backgroundImage: `url(${assets.bg0})`, backgroundRepeat: 'no-repeat',
          backgroundSize: '100% 100%',
         //  overflow: 'hidden', // Prevent content overflow
@@ -151,11 +150,16 @@ const handleRightClick = (event) => {
 
 
 
-      {/* Render ContextMenu */}
-      <DraggableWindow dragConstraints={dragConstraints} windowPosition={windowPosition} >
       
-      {showCertificate && <Certificate />}
+      {/* Render Certificate component outside of DraggableWindow */}
+      <DraggableWindow dragConstraints={dragConstraints} windowPosition={windowPosition} >
+      {showCertificate && (
+        <div className="w-96 h-auto">
+          <Certificate />
+        </div>
+      )}
       </DraggableWindow>
+      {/* Render ContextMenu */}
       {showContextMenu && <ContextMenu top={contextMenuPosition.y} left={contextMenuPosition.x} />}
 
   

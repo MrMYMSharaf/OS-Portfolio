@@ -13,12 +13,20 @@ import ContextMenu from './application/ContextMenu';
 
 import Layer from './application/Layer';
 
+//Importing Desktop application
+import Certificates from './application/windowAplication/Certificate';
 
 // Importing background images
 import bg0 from './assets/bg-img/wal0.webp';
 import bg2 from './assets/bg-img/wal2.jpg';
 import bg3 from './assets/bg-img/wal3.jpg';
 import bg4 from './assets/bg-img/wal4.jpg';
+
+// Importing Certification images
+import Cgoogle from './assets/cretification-img/google.png';
+import Cibm from './assets/cretification-img/ibm.png';
+import Cudemy from './assets/cretification-img/udemy.png';
+import CLinkdin from './assets/cretification-img/Linkedin.jpg';
 
 //// Importing Icone
 import xplogo from './assets/xp-logo/logo.png';
@@ -38,6 +46,7 @@ export default {
   Window,
   TaskBar,Layer,ContextMenu,
   MainMenu,Calculator,Email,Exit,Notepad,
+  Certificates,
   iconeEmail,IconNotepad, // Export Calculator component
   bg0,
   bg2,
@@ -45,5 +54,6 @@ export default {
   bg4,
   xplogo,
   mycomputer,
-  power,logout,Certificate,RTF,Briefcase
+  power,logout,Certificate,RTF,Briefcase,
+  Cgoogle,Cibm,Cudemy,CLinkdin
 };
