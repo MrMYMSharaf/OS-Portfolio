@@ -15,7 +15,7 @@ const DraggableWindow = ({ dragConstraints, windowPosition, children }) => {
       dragConstraints={dragConstraints}
       dragElastic={0}
       dragTransition={{ bounceDamping: 10 }}
-      style={{ x: windowPosition.x, y: windowPosition.y }}
+      style={{ x: windowPosition.x, y: windowPosition.y, position: 'absolute', zIndex: 1 }}
     >
       {children}
     </motion.div>
@@ -33,7 +33,14 @@ const Window = (props) => {
   const [showCertificate, setShowCertificate] = useState(false);
   const [certificateIconBackgroundColor, setCertificateIconBackgroundColor] = useState("");
 
-  
+
+  const iconPositions = [
+    { x: 0, y: 10 },
+    { x: 0, y: 90 }, // Adjust x and y values for each icon
+    { x: 0, y: 170 },
+    { x: 0, y: 250 }
+    // Add more positions as needed
+  ];
   
 
   const handleDragStart = (event) => {
@@ -66,8 +73,8 @@ const handleRightClick = (event) => {
   useLayoutEffect(() => {
     function updateWindowDimensions() {
       const { innerWidth, innerHeight } = window;
-      const windowWidth = 200; // Width of the window
-      const windowHeight = 280; // Height of the window
+      const windowWidth = 10; // Width of the window
+      const windowHeight = 100; // Height of the window
 
       setDragConstraints({
         left: 0,
@@ -115,58 +122,48 @@ const handleRightClick = (event) => {
   
 
   
-  return (
-    <div className="relative h-screen bg-gray-200 overflow-hidden overflow-x-hidden overflow-y-clip" 
-         style={{backgroundImage: `url(${assets.bg0})`, backgroundRepeat: 'no-repeat',
-         backgroundSize: '100% 100%',
-        //  overflow: 'hidden', // Prevent content overflow
-        //  overflowY: 'hidden', // Hide vertical scroll bar
-        //  overflowX: 'hidden'
-         }} onClick={clickwindow} onContextMenu={handleRightClick}>
-      {/* DraggableWindow for My Computer */}
-      <DraggableWindow dragConstraints={dragConstraints} windowPosition={windowPosition}>
-        <img src={assets.mycomputer} alt="mycomputer" onDragStart={handleDragStart} className='w-12 h-12 relative' />
-        <span className='text-white text-xs ml-1 absolute'>My Computer</span>
-      </DraggableWindow>
+ return (
+    <div className="relative h-screen bg-gray-200 overflow-hidden overflow-x-hidden overflow-y-clip" style={{backgroundImage: `url(${assets.bg0})`, backgroundRepeat: 'no-repeat', backgroundSize: '100% 100%'}} onClick={clickwindow} onContextMenu={handleRightClick}>
+      {/* DraggableWindows for icons */}
+      {iconPositions.map((position, index) => (
+        <DraggableWindow key={index} dragConstraints={dragConstraints} windowPosition={position}>
+          {index === 0 && (
+            <>
+              <img src={assets.mycomputer} alt="mycomputer" onDragStart={handleDragStart} className='w-12 h-12 relative' />
+              <span className='text-white text-xs ml-1 absolute'>My Computer</span>
+            </>
+          )}
+          {index === 1 && (
+            <>
+              <img src={assets.RTF} alt="mycomputer" onDragStart={handleDragStart} className='w-12 h-12 relative' />
+              <span className='text-white text-xs ml-1 absolute'>My CV</span>
+            </>
+          )}
+          {index === 2 && (
+            <>
+              <img src={assets.Briefcase} alt="mycomputer" onDragStart={handleDragStart} className='w-12 h-12 relative' />
+              <span className='text-white text-xs ml-1 absolute'>My Blog</span>
+            </>
+          )}
+          {index === 3 && (
+            <div onClick={handleClickCertificate} className={certificateIconBackgroundColor}>
+              <img src={assets.Certificate} alt="mycomputer" onDragStart={handleDragStart} className='w-12 h-12 relative' />
+              <span className='text-white text-xs ml-1 absolute'>Certificate</span>
+            </div>
+          )}
+        </DraggableWindow>
+      ))}
 
-      {/* DraggableWindow for My CV */}
-      <DraggableWindow dragConstraints={dragConstraints} windowPosition={windowPosition}>
-        <img src={assets.RTF} alt="mycomputer" onDragStart={handleDragStart} className='w-12 h-12 relative' />
-        <span className='text-white text-xs ml-1 absolute'>My CV</span>
-      </DraggableWindow>
-
-      {/* DraggableWindow for My Blog */}
-      <DraggableWindow dragConstraints={dragConstraints} windowPosition={windowPosition}>
-        <img src={assets.Briefcase} alt="mycomputer" onDragStart={handleDragStart} className='w-12 h-12 relative' />
-        <span className='text-white text-xs ml-1 absolute'>My Blog</span>
-      </DraggableWindow>
-
-      <DraggableWindow dragConstraints={dragConstraints} windowPosition={windowPosition} >
-        <div onClick={handleClickCertificate} className={certificateIconBackgroundColor}>
-          <img src={assets.Certificate} alt="mycomputer" onDragStart={handleDragStart} className='w-12 h-12 relative' />
-          <span className='text-white text-xs ml-1 absolute'>Certificate</span>
-        </div>
-      </DraggableWindow>
-
-
-
-      
       {/* Render Certificate component outside of DraggableWindow */}
-      <DraggableWindow dragConstraints={dragConstraints} windowPosition={windowPosition} >
-      {showCertificate && (
-        <div className="w-96 h-auto">
-          <Certificate />
-        </div>
-      )}
+      <DraggableWindow dragConstraints={dragConstraints} windowPosition={windowPosition}>
+        {showCertificate && (
+          <div className="w-96">
+            <Certificate />
+          </div>
+        )}
       </DraggableWindow>
       {/* Render ContextMenu */}
       {showContextMenu && <ContextMenu top={contextMenuPosition.y} left={contextMenuPosition.x} />}
-
-  
-      
-      
-      
-
     </div>
   );
 };

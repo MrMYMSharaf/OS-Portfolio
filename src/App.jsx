@@ -16,12 +16,12 @@ function App() {
   
   return (
     <>
-       <assets.Certificates/>
-      {/* <assets.Window menuVisible={menuVisible} toggleMenu={toggleMenu} />
+       {/* <assets.Certificates/> */}
+      <assets.Window menuVisible={menuVisible} toggleMenu={toggleMenu} />
       <assets.TaskBar toggleMenu={toggleMenu} />
       {
         menuVisible && <assets.MainMenu/>
-      } */}
+      }
       
     </>
   );

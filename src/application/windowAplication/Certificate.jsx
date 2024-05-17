@@ -35,7 +35,7 @@ const Certificate = () => {
   };
 
   return (
-    <div>
+    <div className='w-96 h-96'>
       <assets.Layer icone={assets.Certificate} image={assets.Exit} name={'Certificate'}>
         <div className="bg-slate-600 text-white flex justify-center">
           <div className="container mx-auto flex justify-between flex-wrap p-5">
