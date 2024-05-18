@@ -13,7 +13,7 @@ import Counter from "yet-another-react-lightbox/plugins/counter";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 
-const Certificate = () => {
+const Certificate = ({ CertificateonClose }) => {
   const [openState, setOpenState] = useState({
     Gopen: false,
     Iopen: false,
@@ -35,8 +35,8 @@ const Certificate = () => {
   };
 
   return (
-    <div className='w-96 h-96'>
-      <assets.Layer icone={assets.Certificate} image={assets.Exit} name={'Certificate'}>
+    <div className='w-full'>
+      <assets.Layer icone={assets.Certificate} image={assets.Exit} name={'Certificate'} onClose={CertificateonClose}>
         <div className="bg-slate-600 text-white flex justify-center">
           <div className="container mx-auto flex justify-between flex-wrap p-5">
             {/* Google */}

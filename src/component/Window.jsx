@@ -6,16 +6,17 @@ import Calculator  from '../application/Calculator';
 import Certificate from '../application/windowAplication/Certificate';
 
 // DraggableWindow component
-const DraggableWindow = ({ dragConstraints, windowPosition, children }) => {
+const DraggableWindow = ({ dragConstraints, windowPosition, children,className}) => {
   return (
     <motion.div
-      className="w-20 h-24 cursor-grab"
+      // className="w-20 h-24 cursor-grab"
+      className={className}
       drag
       dragMomentum={false}
       dragConstraints={dragConstraints}
       dragElastic={0}
       dragTransition={{ bounceDamping: 10 }}
-      style={{ x: windowPosition.x, y: windowPosition.y, position: 'absolute', zIndex: 1 }}
+      style={{x: windowPosition.x, y: windowPosition.y, position: 'absolute', zIndex: 1 }}
     >
       {children}
     </motion.div>
@@ -117,6 +118,9 @@ const handleRightClick = (event) => {
       return newCount === 2 ? 0 : newCount;
     });
   };
+  const handleCloseCertificate = () => {
+    setShowCertificate(false);
+  };
   
 
   
@@ -126,7 +130,7 @@ const handleRightClick = (event) => {
     <div className="relative h-screen bg-gray-200 overflow-hidden overflow-x-hidden overflow-y-clip" style={{backgroundImage: `url(${assets.bg0})`, backgroundRepeat: 'no-repeat', backgroundSize: '100% 100%'}} onClick={clickwindow} onContextMenu={handleRightClick}>
       {/* DraggableWindows for icons */}
       {iconPositions.map((position, index) => (
-        <DraggableWindow key={index} dragConstraints={dragConstraints} windowPosition={position}>
+        <DraggableWindow key={index} dragConstraints={dragConstraints} windowPosition={position} className="w-20 h-24 cursor-grab">
           {index === 0 && (
             <>
               <img src={assets.mycomputer} alt="mycomputer" onDragStart={handleDragStart} className='w-12 h-12 relative' />
@@ -155,10 +159,10 @@ const handleRightClick = (event) => {
       ))}
 
       {/* Render Certificate component outside of DraggableWindow */}
-      <DraggableWindow dragConstraints={dragConstraints} windowPosition={windowPosition}>
+      <DraggableWindow dragConstraints={dragConstraints} windowPosition={{ x: 200, y: 30 }} className="w-1/2 h-20 cursor-grab">
         {showCertificate && (
-          <div className="w-96">
-            <Certificate />
+          <div>
+            <Certificate CertificateonClose={handleCloseCertificate}/>
           </div>
         )}
       </DraggableWindow>

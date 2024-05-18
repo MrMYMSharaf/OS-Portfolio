@@ -1,6 +1,9 @@
 import React from 'react'
 
-const Layer = ({icone,image,name,children}) => {
+const Layer = ({icone,image,name,children,onClose }) => {
+  const handleClose = () => {
+    onClose(); // Call the onClose function passed from parent component
+  };
   return (
     <div className='bg-blue-700 w-3/4 h-3/4'>
       <div className='flex justify-between items-center'>
@@ -9,7 +12,7 @@ const Layer = ({icone,image,name,children}) => {
           <span className='text-white font-bold text-lg'>{name}</span>
         </div>
         <div className='flex items-end'>
-          <img src={image} alt="Exit" className='w-10 p-2' />
+          <img src={image} alt="Exit" className='w-10 p-2' onClick={handleClose} />
         </div>
       </div>
       <div className='bg-[#EEE8D8] w-full h-3/4 '>
