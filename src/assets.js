@@ -15,6 +15,8 @@ import Layer from './application/Layer';
 
 //Importing Desktop application
 import Certificates from './application/windowAplication/Certificate';
+import Cv from './application/windowAplication/Cv';
+import Blog from './application/windowAplication/Blog';
 
 // Importing background images
 import bg0 from './assets/bg-img/wal0.webp';
@@ -41,12 +43,13 @@ import iconeEmail from './assets/icon/Outlook Express.png';
 import Exit from './assets/icon/Exit.png';
 import IconNotepad from './assets/icon/Notepad.png'
 
+
 // Exporting all assets
 export default {
   Window,
   TaskBar,Layer,ContextMenu,
   MainMenu,Calculator,Email,Exit,Notepad,
-  Certificates,
+  Certificates,Cv,Blog,
   iconeEmail,IconNotepad, // Export Calculator component
   bg0,
   bg2,

@@ -1,8 +1,12 @@
 import React from 'react'
-
-const Blog = () => {
+import assets from '../../assets'
+const Blog = ({BlogClose}) => {
   return (
-    <div>Blog</div>
+    <div>
+      <assets.Layer icone={assets.Certificate} image={assets.Exit} name={'Blog'} onClose={BlogClose}>
+          <span>Developing is ongoing</span>
+    </assets.Layer>
+    </div>
   )
 }
 

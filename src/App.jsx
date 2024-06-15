@@ -16,7 +16,7 @@ function App() {
   
   return (
     <>
-       {/* <assets.Certificates/> */}
+       {/* <assets.Cv/> */}
       <assets.Window menuVisible={menuVisible} toggleMenu={toggleMenu} />
       <assets.TaskBar toggleMenu={toggleMenu} />
       {
