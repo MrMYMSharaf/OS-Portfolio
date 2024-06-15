@@ -19,13 +19,11 @@ const DraggableWindow = ({ dragConstraints, windowPosition, children, className 
   );
 };
 
-const Window = (props) => {
+const Window = ({ menuVisible, toggleMenu, openApp, closeApp }) => {
   const [dragConstraints, setDragConstraints] = useState({ left: 0, right: 0, top: 0, bottom: 0 });
   const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
   const [showContextMenu, setShowContextMenu] = useState(false);
   const [contextMenuPosition, setContextMenuPosition] = useState({ x: 0, y: 0 });
-  const { menuVisible, toggleMenu } = props;
-
   const [clickCount, setClickCount] = useState({ 0: 0, 1: 0, 2: 0, 3: 0 });
   const [showCertificate, setShowCertificate] = useState(false);
   const [showCv, setShowCv] = useState(false);
@@ -132,10 +130,13 @@ const Window = (props) => {
           // Handle My Computer
         } else if (index === 1) {
           setShowCv(true);
+          openApp('Cv');
         } else if (index === 2) {
           setShowBlog(true);
+          openApp('Blog');
         } else if (index === 3) {
           setShowCertificate(true);
+          openApp('Certificate');
         }
       }
 
@@ -148,14 +149,17 @@ const Window = (props) => {
 
   const handleCloseCv = () => {
     setShowCv(false);
+    closeApp('Cv');
   };
 
   const handleCloseBlog = () => {
     setShowBlog(false);
+    closeApp('Blog');
   };
 
   const handleCloseCertificate = () => {
     setShowCertificate(false);
+    closeApp('Certificate');
   };
 
   return (
@@ -193,25 +197,19 @@ const Window = (props) => {
 
       {showCv && (
         <DraggableWindow dragConstraints={dragConstraints} windowPosition={{ x: 200, y: 30 }} className="w-1/2 h-20 cursor-grab">
-          <div>
-            <assets.Cv CvClose={handleCloseCv} />
-          </div>
+          <assets.Cv CvClose={handleCloseCv} />
         </DraggableWindow>
       )}
 
       {showBlog && (
         <DraggableWindow dragConstraints={dragConstraints} windowPosition={{ x: 200, y: 30 }} className="w-1/2 h-20 cursor-grab">
-          <div>
-            <assets.Blog BlogClose={handleCloseBlog} />
-          </div>
+          <assets.Blog BlogClose={handleCloseBlog} />
         </DraggableWindow>
       )}
 
       {showCertificate && (
         <DraggableWindow dragConstraints={dragConstraints} windowPosition={{ x: 200, y: 30 }} className="w-1/2 h-20 cursor-grab">
-          <div>
-            <assets.Certificates CertificateonClose={handleCloseCertificate} />
-          </div>
+          <assets.Certificates CertificateonClose={handleCloseCertificate} />
         </DraggableWindow>
       )}
 
