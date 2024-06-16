@@ -5,8 +5,10 @@ import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import assets from '../../assets';
 
+
+
 const Cv = ({ CvClose }) => {
-  const pdfUrl = 'src/assets/cv_pdf/MYM_SHARAF_CV.pdf'; // Replace with the actual path to your PDF file
+  const pdfUrl = '/cv_pdf/MYM_SHARAF_CV.pdf'; 
 
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
