@@ -5,7 +5,7 @@ const Layer = ({icone,image,name,children,onClose }) => {
     onClose(); // Call the onClose function passed from parent component
   };
   return (
-    <div className='bg-blue-700 w-3/4 h-3/4'>
+    <div className='bg-blue-700 md:w-3/4 md:h-3/4 w-80 h-48'>
       <div className='flex justify-between items-center'>
         <div className='flex p-1'>
           <img src={icone} alt="calculator" className='w-8'/>

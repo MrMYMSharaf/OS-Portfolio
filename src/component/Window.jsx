@@ -2,6 +2,7 @@ import React, { useEffect, useState, useLayoutEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import assets from '../assets';
 import ContextMenu from '../application/ContextMenu';
+import MyComputer from '../application/windowAplication/Mycomputer'// Import MyComputer component
 
 const DraggableWindow = ({ dragConstraints, windowPosition, children, className }) => {
   return (
@@ -19,7 +20,7 @@ const DraggableWindow = ({ dragConstraints, windowPosition, children, className 
   );
 };
 
-const Window = ({ menuVisible, toggleMenu, openApp, closeApp }) => {
+const Window = ({ menuVisible, toggleMenu, openApp, closeApp, appVisibility }) => {
   const [dragConstraints, setDragConstraints] = useState({ left: 0, right: 0, top: 0, bottom: 0 });
   const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
   const [showContextMenu, setShowContextMenu] = useState(false);
@@ -28,6 +29,7 @@ const Window = ({ menuVisible, toggleMenu, openApp, closeApp }) => {
   const [showCertificate, setShowCertificate] = useState(false);
   const [showCv, setShowCv] = useState(false);
   const [showBlog, setShowBlog] = useState(false);
+  const [showMyComputer, setShowMyComputer] = useState(false); // Add state for My Computer visibility
   const [iconBackgroundColor, setIconBackgroundColor] = useState({
     0: "",
     1: "",
@@ -127,7 +129,8 @@ const Window = ({ menuVisible, toggleMenu, openApp, closeApp }) => {
 
       if (newCount === 2) {
         if (index === 0) {
-          // Handle My Computer
+          setShowMyComputer(true); // Show My Computer on double-click
+          openApp('MyComputer');
         } else if (index === 1) {
           setShowCv(true);
           openApp('Cv');
@@ -160,6 +163,11 @@ const Window = ({ menuVisible, toggleMenu, openApp, closeApp }) => {
   const handleCloseCertificate = () => {
     setShowCertificate(false);
     closeApp('Certificate');
+  };
+
+  const handleCloseMyComputer = () => {
+    setShowMyComputer(false);
+    closeApp('MyComputer');
   };
 
   return (
@@ -195,19 +203,25 @@ const Window = ({ menuVisible, toggleMenu, openApp, closeApp }) => {
         </DraggableWindow>
       ))}
 
-      {showCv && (
+      {showMyComputer && appVisibility['MyComputer'] && (
+        <DraggableWindow dragConstraints={dragConstraints} windowPosition={{ x: 200, y: 30 }} className="w-1/2 h-20 cursor-grab">
+          <MyComputer MycomputerClose={handleCloseMyComputer} />
+        </DraggableWindow>
+      )}
+
+      {showCv && appVisibility['Cv'] && (
         <DraggableWindow dragConstraints={dragConstraints} windowPosition={{ x: 200, y: 30 }} className="w-1/2 h-20 cursor-grab">
           <assets.Cv CvClose={handleCloseCv} />
         </DraggableWindow>
       )}
 
-      {showBlog && (
+      {showBlog && appVisibility['Blog'] && (
         <DraggableWindow dragConstraints={dragConstraints} windowPosition={{ x: 200, y: 30 }} className="w-1/2 h-20 cursor-grab">
           <assets.Blog BlogClose={handleCloseBlog} />
         </DraggableWindow>
       )}
 
-      {showCertificate && (
+      {showCertificate && appVisibility['Certificate'] && (
         <DraggableWindow dragConstraints={dragConstraints} windowPosition={{ x: 200, y: 30 }} className="w-1/2 h-20 cursor-grab">
           <assets.Certificates CertificateonClose={handleCloseCertificate} />
         </DraggableWindow>
