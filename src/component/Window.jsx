@@ -2,7 +2,7 @@ import React, { useEffect, useState, useLayoutEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import assets from '../assets';
 import ContextMenu from '../application/ContextMenu';
-import MyComputer from '../application/windowAplication/Mycomputer'// Import MyComputer component
+import MyComputer from '../application/windowAplication/Mycomputer';
 
 const DraggableWindow = ({ dragConstraints, windowPosition, children, className }) => {
   return (
@@ -29,13 +29,14 @@ const Window = ({ menuVisible, toggleMenu, openApp, closeApp, appVisibility }) =
   const [showCertificate, setShowCertificate] = useState(false);
   const [showCv, setShowCv] = useState(false);
   const [showBlog, setShowBlog] = useState(false);
-  const [showMyComputer, setShowMyComputer] = useState(false); // Add state for My Computer visibility
+  const [showMyComputer, setShowMyComputer] = useState(false);
   const [iconBackgroundColor, setIconBackgroundColor] = useState({
     0: "",
     1: "",
     2: "",
     3: ""
   });
+  const [background, setBackground] = useState(assets.bg0);
 
   const iconRefs = useRef([]);
   const windowRef = useRef(null);
@@ -170,8 +171,18 @@ const Window = ({ menuVisible, toggleMenu, openApp, closeApp, appVisibility }) =
     closeApp('MyComputer');
   };
 
+  const changeBackground = (bg) => {
+    setBackground(bg);
+  };
+
   return (
-    <div ref={windowRef} className="relative h-screen bg-gray-200 overflow-hidden overflow-x-hidden overflow-y-clip" style={{ backgroundImage: `url(${assets.bg0})`, backgroundRepeat: 'no-repeat', backgroundSize: '100% 100%' }} onClick={clickwindow} onContextMenu={handleRightClick}>
+    <div
+      ref={windowRef}
+      className="relative h-screen bg-gray-200 overflow-hidden overflow-x-hidden overflow-y-clip"
+      style={{ backgroundImage: `url(${background})`, backgroundRepeat: 'no-repeat', backgroundSize: '100% 100%' }}
+      onClick={clickwindow}
+      onContextMenu={handleRightClick}
+    >
       {iconPositions.map((position, index) => (
         <DraggableWindow key={index} dragConstraints={dragConstraints} windowPosition={position} className="w-20 h-24 cursor-grab">
           <div ref={el => (iconRefs.current[index] = el)} onClick={() => handleClickIcon(index)} className={iconBackgroundColor[index]}>
@@ -205,7 +216,7 @@ const Window = ({ menuVisible, toggleMenu, openApp, closeApp, appVisibility }) =
 
       {showMyComputer && appVisibility['MyComputer'] && (
         <DraggableWindow dragConstraints={dragConstraints} windowPosition={{ x: 200, y: 30 }} className="w-1/2 h-20 cursor-grab">
-          <MyComputer MycomputerClose={handleCloseMyComputer} />
+          <MyComputer MyComputerClose={handleCloseMyComputer} />
         </DraggableWindow>
       )}
 
@@ -227,7 +238,7 @@ const Window = ({ menuVisible, toggleMenu, openApp, closeApp, appVisibility }) =
         </DraggableWindow>
       )}
 
-      {showContextMenu && <ContextMenu top={contextMenuPosition.y} left={contextMenuPosition.x} />}
+      {showContextMenu && <ContextMenu top={contextMenuPosition.y} left={contextMenuPosition.x} changeBackground={changeBackground} />}
     </div>
   );
 };

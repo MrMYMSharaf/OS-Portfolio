@@ -38,6 +38,28 @@
     background-color: #f1f1f1; /* Color of the scrollbar track */
 }
 
+.clock-container {
+  background-color: rgba(255, 255, 255, 0.2); /* Light background */
+  padding: 5px;
+  border-radius: 5px;
+  color: #ffffff; /* White text color */
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  text-align: center;
+  min-width: 80px; /* Ensure it doesn't shrink too much */
+}
+
+/* Hide scrollbar for the taskbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 
   
 
