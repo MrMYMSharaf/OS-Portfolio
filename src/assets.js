@@ -23,6 +23,9 @@ import bg0 from './assets/bg-img/wal0.webp';
 import bg2 from './assets/bg-img/wal2.jpg';
 import bg3 from './assets/bg-img/wal3.jpg';
 import bg4 from './assets/bg-img/wal4.jpg';
+import matrix3d from './assets/bg-video/Matrix3D.gif';
+import dGit from './assets/bg-video/3dGit.gif';
+
 
 // Importing Certification images
 import Cgoogle from './assets/cretification-img/google.png';
@@ -55,6 +58,8 @@ export default {
   bg2,
   bg3,
   bg4,
+  matrix3d,
+  dGit, // Ensure this is exported
   xplogo,
   mycomputer,
   power,logout,Certificate,RTF,Briefcase,

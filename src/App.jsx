@@ -5,6 +5,8 @@ function App() {
   const [menuVisible, setMenuVisible] = useState(false);
   const [openedApps, setOpenedApps] = useState([]);
   const [appVisibility, setAppVisibility] = useState({});
+  const [background, setBackground] = useState(assets.bg0);
+
 
   // Function to toggle the visibility of the main menu
   const toggleMenu = () => {
@@ -31,14 +33,20 @@ function App() {
     setAppVisibility(newVisibility);
   };
 
+  const changeBackground = (bg) => {
+    setBackground(bg);
+  };
+
   return (
-    <>
+    <div className="relative w-full h-full">
+      <div className="absolute w-full h-full bg-cover bg-center" style={{ backgroundImage: `url(${background})` }} />
       <assets.Window 
         menuVisible={menuVisible} 
         toggleMenu={toggleMenu} 
         openApp={openApp} 
         closeApp={closeApp}
         appVisibility={appVisibility}
+        changeBackground={changeBackground}
       />
       <assets.TaskBar 
         toggleMenu={toggleMenu} 
@@ -46,7 +54,7 @@ function App() {
         toggleAppVisibility={toggleAppVisibility} 
       />
       {menuVisible && <assets.MainMenu />}
-    </>
+    </div>
   );
 }
 
