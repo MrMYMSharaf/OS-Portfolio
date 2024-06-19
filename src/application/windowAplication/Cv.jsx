@@ -14,7 +14,7 @@ const Cv = ({ CvClose }) => {
 
   return (
     <div>
-      <assets.Layer icon={assets.Certificate} image={assets.Exit} name={'CV'} onClose={CvClose}>
+      <assets.Layer icone={assets.RTF} image={assets.Exit} name={'CV'} onClose={CvClose}>
         <Worker workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`}>
           <div
             style={{
