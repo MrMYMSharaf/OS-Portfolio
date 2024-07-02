@@ -222,18 +222,21 @@ const Window = ({ menuVisible, toggleMenu, openApp, closeApp, appVisibility }) =
 
       {showCv && appVisibility['Cv'] && (
         <DraggableWindow dragConstraints={dragConstraints} windowPosition={{ x: 200, y: 30 }} className="w-1/2 h-20 cursor-grab">
+          {/* Replace assets.Cv with your actual component */}
           <assets.Cv CvClose={handleCloseCv} />
         </DraggableWindow>
       )}
 
       {showBlog && appVisibility['Blog'] && (
         <DraggableWindow dragConstraints={dragConstraints} windowPosition={{ x: 200, y: 30 }} className="w-1/2 h-20 cursor-grab">
+          {/* Replace assets.Blog with your actual component */}
           <assets.Blog BlogClose={handleCloseBlog} />
         </DraggableWindow>
       )}
 
       {showCertificate && appVisibility['Certificate'] && (
         <DraggableWindow dragConstraints={dragConstraints} windowPosition={{ x: 200, y: 30 }} className="w-1/2 h-20 cursor-grab">
+          {/* Replace assets.Certificates with your actual component */}
           <assets.Certificates CertificateonClose={handleCloseCertificate} />
         </DraggableWindow>
       )}
