@@ -17,6 +17,7 @@ import Layer from './application/Layer';
 import Certificates from './application/windowAplication/Certificate';
 import Cv from './application/windowAplication/Cv';
 import Blog from './application/windowAplication/Blog';
+import Mycomputer from './application/windowAplication/Mycomputer';
 
 // Importing background images
 import bg0 from './assets/bg-img/wal0.webp';
@@ -49,7 +50,7 @@ import IconNotepad from './assets/icon/Notepad.png'
 
 // Exporting all assets
 export default {
-  Window,
+  Window,Mycomputer,
   TaskBar,Layer,ContextMenu,
   MainMenu,Calculator,Email,Exit,Notepad,
   Certificates,Cv,Blog,
